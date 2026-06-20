@@ -13,18 +13,26 @@ from PIL import Image
 
 class _RegionSelector:
     def __init__(self, root: tk.Misc):
-        # 부모 root 위에 전체화면 오버레이 Toplevel을 띄운다.
+        # 모든 모니터를 합친 가상 데스크톱 경계를 구한다. (-fullscreen 은 주 모니터만 덮음)
+        with mss.mss() as sct:
+            vs = sct.monitors[0]  # {'left','top','width','height'} = 전체 가상 화면
+
+        # 부모 root 위에 가상 데스크톱 전체를 덮는 무테두리 오버레이 Toplevel을 띄운다.
         self.top = tk.Toplevel(root)
-        self.top.attributes("-fullscreen", True)
+        self.top.overrideredirect(True)  # 타이틀바 제거 (다중 모니터에서 -fullscreen 대체)
+        self.top.geometry(
+            f"{vs['width']}x{vs['height']}+{vs['left']}+{vs['top']}"
+        )
         self.top.attributes("-alpha", 0.3)
         self.top.attributes("-topmost", True)
         self.top.configure(bg="black", cursor="cross")
+        self.top.focus_force()  # ESC 키 바인딩이 동작하도록 포커스 확보
 
         self.canvas = tk.Canvas(self.top, highlightthickness=0, bg="black")
         self.canvas.pack(fill="both", expand=True)
 
         self.hint = self.canvas.create_text(
-            self.top.winfo_screenwidth() // 2,
+            vs["width"] // 2,
             40,
             text="QR 영역을 드래그하세요  (취소: ESC)",
             fill="white",

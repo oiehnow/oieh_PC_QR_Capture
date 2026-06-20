@@ -7,7 +7,7 @@ python -m pip install -r requirements.txt
 if errorlevel 1 goto error
 
 echo [2/2] EXE 빌드...
-python -m PyInstaller --noconfirm --onefile --windowed --name "oieh QR reader" --collect-all customtkinter main.py
+python -m PyInstaller --noconfirm --onefile --windowed --name "oieh QR reader" --icon icon.png --add-data "icon.png;." --collect-all customtkinter main.py
 if errorlevel 1 goto error
 
 echo.
