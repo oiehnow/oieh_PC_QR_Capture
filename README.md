@@ -1,18 +1,15 @@
 # oieh QR reader
 
-[![Release](https://img.shields.io/github/v/release/oiehnow/oieh_PC_QR_Capture)](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/latest)
-[![Download](https://img.shields.io/github/downloads/oiehnow/oieh_PC_QR_Capture/total)](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/latest)
-
 화면에서 마우스로 영역을 드래그해 캡처하고, 그 안의 **QR 코드를 읽어주는** Windows 데스크톱 프로그램입니다.
 
-## ⬇️ 다운로드
+## 다운로드
 설치 없이 바로 실행할 수 있는 실행파일을 받으세요:
 
-**👉 [oieh-QR-reader.exe 다운로드](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/download/v1.0.2/oieh-QR-reader.exe)**
+ [oieh-QR-reader.exe](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/download/v1.0.2/oieh-QR-reader.exe)
 
-또는 [릴리스 페이지](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/latest)에서 최신 버전을 확인하세요.
 
-<img width="1089" height="473" alt="UI" src="https://github.com/user-attachments/assets/391dd0d7-ecdd-4927-99f0-0a542f12572f" />
+<img width="1043" height="447" alt="화면 캡처 2026-06-20 215434" src="https://github.com/user-attachments/assets/6939969c-2ca4-4c93-b62d-bd26bc3b0ace" />
+
 
 ## 기능
 - "+ recap" 버튼 → 반투명 오버레이(**모든 모니터** 지원)에서 마우스로 영역 드래그
