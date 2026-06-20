@@ -1,14 +1,17 @@
 """화면 영역 선택 + 캡처 모듈.
 
-반투명 전체화면 오버레이를 띄우고 마우스 드래그로 사각 영역을 선택하면
-해당 영역을 mss로 캡처해 PIL.Image로 반환한다. ESC 또는 빈 선택은 취소(None).
+반투명 전체화면(다중 모니터 포함) 오버레이를 띄우고 마우스 드래그로 사각 영역을
+선택하면 해당 영역을 mss로 캡처해 (그레이스케일 픽셀, 너비, 높이) 튜플로 반환한다.
+ESC 또는 빈 선택은 취소(None). QR은 흑백이므로 한 채널(녹색)만 추출해 그레이스케일로
+쓰며, 이렇게 하면 PIL/numpy 없이도 빠르게 변환된다.
 """
 from __future__ import annotations
 
 import tkinter as tk
 
 import mss
-from PIL import Image
+
+GrayImage = tuple[bytes, int, int]
 
 
 class _RegionSelector:
@@ -78,8 +81,12 @@ class _RegionSelector:
         self.top.destroy()
 
 
-def select_region(root: tk.Misc) -> Image.Image | None:
-    """드래그로 선택한 화면 영역을 캡처해 PIL.Image로 반환. 취소 시 None."""
+def select_region(root: tk.Misc) -> GrayImage | None:
+    """드래그로 선택한 화면 영역을 캡처해 (그레이스케일 픽셀, 너비, 높이)로 반환.
+
+    취소 시 None. mss는 BGRA 버퍼를 주므로 녹색 채널(인덱스 1)만 슬라이스해
+    8bpp 그레이스케일로 변환한다 — PIL/numpy 불필요.
+    """
     selector = _RegionSelector(root)
     root.wait_window(selector.top)
 
@@ -91,4 +98,6 @@ def select_region(root: tk.Misc) -> Image.Image | None:
     with mss.mss() as sct:
         monitor = {"left": x1, "top": y1, "width": x2 - x1, "height": y2 - y1}
         shot = sct.grab(monitor)
-        return Image.frombytes("RGB", shot.size, shot.bgra, "raw", "BGRX")
+
+    gray = bytes(shot.bgra[1::4])  # BGRA → 녹색 채널만 추출(그레이스케일)
+    return gray, shot.width, shot.height

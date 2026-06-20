@@ -8,17 +8,17 @@
 ## ⬇️ 다운로드
 설치 없이 바로 실행할 수 있는 실행파일을 받으세요:
 
-**👉 [oieh-QR-reader.exe 다운로드](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/download/v1.0.1/oieh-QR-reader.exe)**
+**👉 [oieh-QR-reader.exe 다운로드](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/download/v1.0.2/oieh-QR-reader.exe)**
 
 또는 [릴리스 페이지](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/latest)에서 최신 버전을 확인하세요.
 
 <img width="1089" height="473" alt="UI" src="https://github.com/user-attachments/assets/391dd0d7-ecdd-4927-99f0-0a542f12572f" />
 
 ## 기능
-- "+ 다시 캡처" 버튼 → 반투명 전체화면 오버레이에서 마우스로 영역 드래그
+- "+ recap" 버튼 → 반투명 오버레이(**모든 모니터** 지원)에서 마우스로 영역 드래그
 - 선택 영역을 캡처해 QR 코드 자동 디코딩
-- 결과 텍스트 표시 + **복사 버튼**으로 클립보드 복사
-- 멀티모니터 / 고DPI 지원, 외부 DLL 불필요(OpenCV 디코더)
+- 결과 텍스트 표시 + **복사 아이콘**으로 클립보드 복사
+- 멀티모니터 지원, **약 9MB 경량 단일 실행파일**(OpenCV/numpy 불필요)
 
 ## 실행 (개발자용)
 ```bash
@@ -36,10 +36,10 @@ build.bat
 빌드 결과: `dist\oieh QR reader.exe` (의존성 없이 단독 실행)
 
 ## 기술 스택
-- GUI: [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter)
+- GUI: 표준 `tkinter` (외부 GUI 라이브러리 불필요)
 - 화면 캡처: [mss](https://github.com/BoboTiG/python-mss)
-- QR 디코딩: OpenCV `QRCodeDetector`
-- 패키징: PyInstaller
+- QR 디코딩: [pyzbar](https://github.com/NaturalHistoryMuseum/pyzbar) (libzbar)
+- 패키징: PyInstaller + UPX
 
 ## 파일 구조
 | 파일 | 역할 |

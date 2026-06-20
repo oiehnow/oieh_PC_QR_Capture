@@ -7,4 +7,5 @@ env/
 build/
 dist/
 *.spec
+.tools/
 .DS_Store
