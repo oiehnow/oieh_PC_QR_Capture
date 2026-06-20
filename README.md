@@ -12,7 +12,8 @@
 
 또는 [릴리스 페이지](https://github.com/oiehnow/oieh_PC_QR_Capture/releases/latest)에서 최신 버전을 확인하세요.
 
-![UI](초안UI%20디자인.png)
+<img width="1089" height="473" alt="UI" src="https://github.com/user-attachments/assets/391dd0d7-ecdd-4927-99f0-0a542f12572f" />
+
 
 ## 기능
 - "+ 다시 캡처" 버튼 → 반투명 전체화면 오버레이에서 마우스로 영역 드래그
