@@ -5,10 +5,20 @@ CustomTkinter 다크 테마 UI. "+ 다시 캡처" 버튼으로 화면 영역을 
 """
 from __future__ import annotations
 
+import os
+import sys
+import tkinter as tk
+
 import customtkinter as ctk
 
 from capture import select_region
 from decoder import decode_qr
+
+
+def _resource_path(name: str) -> str:
+    """개발 환경과 PyInstaller 번들(--onefile, _MEIPASS) 양쪽에서 리소스 경로를 반환."""
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, name)
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
@@ -25,6 +35,13 @@ class QRReaderApp(ctk.CTk):
         self.geometry("680x420")
         self.minsize(520, 320)
         self.configure(fg_color="#1e1e1e")
+
+        # 창 아이콘 설정 (icon.png)
+        try:
+            self._icon = tk.PhotoImage(file=_resource_path("icon.png"))
+            self.iconphoto(True, self._icon)
+        except Exception:
+            pass  # 아이콘 로드 실패 시 기본 아이콘 사용
 
         self._result_text = ""
 
