@@ -45,3 +45,7 @@ build.bat
 | `capture.py` | 화면 영역 드래그 선택 및 캡처 |
 | `decoder.py` | 이미지에서 QR 디코딩 |
 | `build.bat` | 원클릭 EXE 빌드 |
+
+## 백신 오탐 이슈
+<img width="2478" height="767" alt="image" src="https://github.com/user-attachments/assets/9d2550ac-0234-495f-a914-63d51843ad22" />  
+해결 완 오진으로 유명한 SecureAge사의 백신만 탐지
